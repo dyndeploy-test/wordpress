@@ -96,4 +96,7 @@ if [[ "$1" == apache2* ]] || [ "$1" = 'php-fpm' ]; then
 	fi
 fi
 
+chown -R www-data:www-data wp-content
+chmod -R 777 wp-content
+
 exec "$@"
