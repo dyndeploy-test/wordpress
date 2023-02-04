@@ -145,6 +145,10 @@ RUN set -eux; \
 		echo 'RewriteRule . /index.php [L]'; \
 		echo ''; \
 		echo '# END WordPress'; \
+                echo 'php_value upload_max_filesize 350M'; \
+                echo 'php_value post_max_size 350M'; \
+                echo 'php_value max_execution_time 300'; \
+                echo 'php_value max_input_time 300'; \				
 	} > /usr/src/wordpress/.htaccess; \
 	\
 	chown -R www-data:www-data /usr/src/wordpress; \
