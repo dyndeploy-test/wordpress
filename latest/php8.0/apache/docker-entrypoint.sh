@@ -96,7 +96,10 @@ if [[ "$1" == apache2* ]] || [ "$1" = 'php-fpm' ]; then
 	fi
 fi
 
-chown -R www-data:www-data wp-content
-chmod -R 777 wp-content
+WPCONTENT_OWNER=`stat -c "%U %G" /var/www/html/wp-content/`
+if [[ ! $WPCONTENT_OWNER == *"www-data"* ]]; then
+    chown -R www-data:www-data wp-content
+    chmod -R 777 wp-content
+fi
 
 exec "$@"
